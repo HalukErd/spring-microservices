@@ -12,6 +12,7 @@
         <module name="clients" />
         <module name="fraud" />
         <module name="eureka" />
+        <module name="amqp" />
         <module name="customer" />
       </profile>
     </annotationProcessing>
