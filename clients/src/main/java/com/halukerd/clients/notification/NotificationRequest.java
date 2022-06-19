@@ -1,4 +1,4 @@
-package com.halukerd.customer;
+package com.halukerd.clients.notification;
 
 public record NotificationRequest(
         Integer toCustomerId,
