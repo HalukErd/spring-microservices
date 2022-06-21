@@ -7,9 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="fraud" />
-        <module name="customer" />
+        <module name="notification" />
+        <module name="apigw" />
         <module name="clients" />
+        <module name="fraud" />
+        <module name="eureka" />
+        <module name="amqp" />
+        <module name="customer" />
       </profile>
     </annotationProcessing>
   </component>
