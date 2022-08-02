@@ -30,7 +30,7 @@ services:
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
-    ports:
+    ports: 
       - "9411:9411"
     networks:
       - spring
@@ -42,6 +42,74 @@ services:
       - "15672:15672"
     networks:
       - spring
+  eureka:
+    image: halukerd/eureka:latest
+    container_name: eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  apigw:
+    image: halukerd/apigw:latest
+    container_name: apigw
+    ports:
+      - "8083:8083"
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+      - eureka
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  customer:
+    image: halukerd/customer:latest
+    container_name: customer
+    ports:
+      - "8080:8080"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka
+      - rabbitmq
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  fraud:
+    image: halukerd/fraud:latest
+    container_name: fraud
+    ports:
+      - "8081:8081"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka
+      - rabbitmq
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+  notification:
+    image: halukerd/notification:latest
+    container_name: notification
+    ports:
+      - "8082:8082"
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka
+      - rabbitmq
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
 networks:
   postgres:
     driver: bridge
