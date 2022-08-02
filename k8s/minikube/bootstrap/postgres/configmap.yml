@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap
+data:
+  POSTGRES_DB: halukerd
+  POSTGRES_USER: halukerd
+  POSTGRES_PASSWORD: password
