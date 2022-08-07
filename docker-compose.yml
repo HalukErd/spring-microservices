@@ -34,37 +34,37 @@ services:
       - "9411:9411"
     networks:
       - spring
-  rabbitmq:
-    image: rabbitmq:3.9.11-management-alpine
-    container_name: rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    networks:
-      - spring
-  eureka:
-    image: halukerd/eureka:latest
-    container_name: eureka
-    ports:
-      - "8761:8761"
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-  apigw:
-    image: halukerd/apigw:latest
-    container_name: apigw
-    ports:
-      - "8083:8083"
-    networks:
-      - spring
-    depends_on:
-      - zipkin
-      - eureka
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
+#  rabbitmq:
+#    image: rabbitmq:3.9.11-management-alpine
+#    container_name: rabbitmq
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"
+#    networks:
+#      - spring
+#  eureka:
+#    image: halukerd/eureka:latest
+#    container_name: eureka
+#    ports:
+#      - "8761:8761"
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
+#  apigw:
+#    image: halukerd/apigw:latest
+#    container_name: apigw
+#    ports:
+#      - "8083:8083"
+#    networks:
+#      - spring
+#    depends_on:
+#      - zipkin
+#      - eureka
+#    environment:
+#      - SPRING_PROFILES_ACTIVE=docker
   customer:
     image: halukerd/customer:latest
     container_name: customer
@@ -75,7 +75,7 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - eureka
+#      - eureka
       - rabbitmq
       - postgres
     environment:
@@ -90,7 +90,7 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - eureka
+#      - eureka
       - rabbitmq
       - postgres
     environment:
@@ -105,7 +105,7 @@ services:
       - postgres
     depends_on:
       - zipkin
-      - eureka
+#      - eureka
       - rabbitmq
       - postgres
     environment:
